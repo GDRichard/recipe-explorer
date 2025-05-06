@@ -1,0 +1,31 @@
+# Recipe Explorer
+
+Simple recipe explorer application that searches through the
+[spoonacular API](https://spoonacular.com/food-api/docs).
+
+Run the development server:
+
+```
+pnpm run dev
+```
+
+## TODO
+
+### Home Page
+
+- [ ] search input with button; should search after hitting 'Search' or enter key
+- [ ] display search results; limit 5 per page, with pagination
+- [ ] display recipe name and image
+- [ ] clicking on a recipe redirects to the detail page
+
+### Detail Page
+
+- [ ] display the following:
+  - recipe name
+  - recipe image
+  - health information
+  - list of ingredients
+  - cooking instructions
+- [ ] for each ingredient, display the following:
+  - ingredient name
+  - ingredient measure
