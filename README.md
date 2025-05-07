@@ -1,8 +1,5 @@
 # Recipe Finder
 
-Simple recipe finder application that searches through the
-[spoonacular API](https://spoonacular.com/food-api/docs).
-
 Run the development server:
 
 ```
