@@ -3,7 +3,7 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Combobox } from "@/components/ui/combobox";
 import { Input } from "@/components/ui/input";
-import { API } from "./constants";
+import { API, CUISINES } from "./constants";
 import { useState } from "react";
 import { RecipeCard } from "./recipeCard";
 
@@ -19,6 +19,7 @@ type Page = Recipe[];
 export function SearchPage() {
   const [pages, setPages] = useState<Page[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [cuisine, setCuisine] = useState<string>("");
 
   async function onSearch(data: FormData) {
     const searchQuery = data.get("searchQuery");
@@ -26,9 +27,15 @@ export function SearchPage() {
       return;
     }
 
-    const url = `${API.SEARCH_RECIPES}?apiKey=${
+    let url = `${API.SEARCH_RECIPES}?apiKey=${
       import.meta.env.VITE_API_KEY
     }&query=${searchQuery}`;
+
+    if (cuisine.length > 0) {
+      url += `&cuisine=${cuisine}`;
+    }
+
+    console.log("url:", url);
 
     try {
       const response = await fetch(url);
@@ -68,26 +75,24 @@ export function SearchPage() {
     <div className="max-w-7xl mx-auto py-8">
       <h1 className="text-3xl font-bold text-center ">Recipe Finder</h1>
 
-      <div className="flex justify-between py-8">
-        <form className="flex space-x-2 w-full sm:max-w-md" action={onSearch}>
+      <div className="flex gap-2 max-w-3xl mx-auto py-8">
+        <Combobox
+          placeholder="Filter by cuisine"
+          emptyLabel="No cuisine found"
+          onSelect={(cuisineOption) => setCuisine(cuisineOption)}
+          options={CUISINES.map((cuisine) => ({
+            value: cuisine,
+            label: cuisine,
+          }))}
+        />
+        <form className="flex gap-2 w-full" action={onSearch}>
           <Input
-            placeholder="Search for recipes"
+            placeholder="Search for recipes..."
             type="search"
             name="searchQuery"
           />
           <Button type="submit">Search</Button>
         </form>
-        <div className="w-1/3">
-          <Combobox
-            placeholder="Filter by cuisine"
-            emptyLabel="No cuisine found"
-            options={[
-              { value: "italian", label: "Italian" },
-              { value: "greek", label: "Greek" },
-              { value: "french", label: "French" },
-            ]}
-          />
-        </div>
       </div>
 
       {pages.length > 0 ? (

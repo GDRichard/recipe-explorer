@@ -22,6 +22,7 @@ import {
 interface ComboboxProps {
   options: Options[];
   placeholder: string;
+  onSelect: (option: string) => void;
   emptyLabel?: string;
 }
 
@@ -33,6 +34,7 @@ interface Options {
 export function Combobox({
   options,
   placeholder,
+  onSelect,
   emptyLabel = "No option found",
 }: ComboboxProps) {
   const [open, setOpen] = React.useState(false);
@@ -45,7 +47,7 @@ export function Combobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between text-muted-foreground"
+          className="w-[200px] justify-between text-muted-foreground"
         >
           {value
             ? options.find((option) => option.value === value)?.label
@@ -53,7 +55,7 @@ export function Combobox({
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-full p-0">
+      <PopoverContent className="w-[200px] p-0">
         <Command>
           <CommandInput placeholder={placeholder} />
           <CommandList>
@@ -64,7 +66,9 @@ export function Combobox({
                   key={option.value}
                   value={option.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
+                    const newValue = currentValue === value ? "" : currentValue;
+                    onSelect(newValue);
+                    setValue(newValue);
                     setOpen(false);
                   }}
                 >

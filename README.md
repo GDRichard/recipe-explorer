@@ -16,7 +16,7 @@ pnpm run dev
 - [x] display recipe name and image
 - [x] limit results to 5 per page
 - [x] add pagination
-- [ ] filter by cuisine
+- [x] filter by cuisine
 - [ ] clicking on a recipe redirects to the detail page
 - [ ] add typing for api results
 
