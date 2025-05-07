@@ -1,6 +1,6 @@
-# Recipe Explorer
+# Recipe Finder
 
-Simple recipe explorer application that searches through the
+Simple recipe finder application that searches through the
 [spoonacular API](https://spoonacular.com/food-api/docs).
 
 Run the development server:
@@ -16,8 +16,8 @@ pnpm run dev
 - [x] add search input with button; should search after hitting 'Search' or enter key
 - [x] add filter combobox
 - [x] display search results
+- [x] display recipe name and image
 - [ ] limit results to 5 per page with pagination
-- [ ] display recipe name and image
 - [ ] filter by cuisine
 - [ ] clicking on a recipe redirects to the detail page
 

@@ -2,20 +2,28 @@ import { Button } from "@/components/ui/button";
 import { Combobox } from "@/components/ui/combobox";
 import { Input } from "@/components/ui/input";
 import { API } from "./constants";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { RecipeCard } from "./recipeCard";
+
+interface Recipe {
+  id: number;
+  title: string;
+  image: string;
+  imageType: string;
+}
 
 export function SearchPage() {
-  const [recipes, setRecipes] = useState<any>(null);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   async function onSearch(data: FormData) {
-    let url = `${API.SEARCH_RECIPES}?apiKey=${import.meta.env.VITE_API_KEY}`;
-
     const searchQuery = data.get("searchQuery");
-    if (searchQuery) {
-      url += `&query=${searchQuery}`;
+    if (!searchQuery) {
+      return;
     }
 
-    console.log("url:", url);
+    const url = `${API.SEARCH_RECIPES}?apiKey=${
+      import.meta.env.VITE_API_KEY
+    }&query=${searchQuery}`;
 
     try {
       const response = await fetch(url);
@@ -28,17 +36,13 @@ export function SearchPage() {
       setRecipes(json.results);
     } catch (error) {
       console.error(error);
-      setRecipes(null);
+      setRecipes([]);
     }
   }
 
-  useEffect(() => {
-    console.log("recipes:", recipes);
-  }, [recipes]);
-
   return (
     <div className="max-w-7xl mx-auto py-8">
-      <h1 className="text-3xl font-bold text-center ">Recipe Explorer</h1>
+      <h1 className="text-3xl font-bold text-center ">Recipe Finder</h1>
 
       <div className="flex justify-between py-8">
         <form className="flex space-x-2 w-full sm:max-w-md" action={onSearch}>
@@ -49,7 +53,7 @@ export function SearchPage() {
           />
           <Button type="submit">Search</Button>
         </form>
-        <div>
+        <div className="w-1/3">
           <Combobox
             placeholder="Filter by cuisine"
             emptyLabel="No cuisine found"
@@ -62,15 +66,13 @@ export function SearchPage() {
         </div>
       </div>
 
-      {recipes && (
-        <div className="py-8">
-          <ul>
-            {recipes.map((recipe: any) => (
-              <li key={recipe.title}>{recipe.title}</li>
-            ))}
-          </ul>
+      {recipes.length > 0 ? (
+        <div className="mx-auto max-w-3xl py-8 space-y-4">
+          {recipes.map((recipe) => (
+            <RecipeCard title={recipe.title} image={recipe.image} />
+          ))}
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
