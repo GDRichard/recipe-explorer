@@ -1,4 +1,4 @@
-import { SearchPage } from "./SearchPage";
+import { SearchPage } from "./search";
 
 function App() {
   return <SearchPage />;
