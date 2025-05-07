@@ -17,9 +17,11 @@ pnpm run dev
 - [x] add filter combobox
 - [x] display search results
 - [x] display recipe name and image
-- [ ] limit results to 5 per page with pagination
+- [x] limit results to 5 per page
+- [x] add pagination
 - [ ] filter by cuisine
 - [ ] clicking on a recipe redirects to the detail page
+- [ ] add typing for api results
 
 ### Detail Page
 
