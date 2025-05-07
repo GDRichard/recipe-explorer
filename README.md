@@ -13,9 +13,11 @@ pnpm run dev
 
 ### Home Page
 
-- [x] search input with button; should search after hitting 'Search' or enter key
+- [x] add search input with button; should search after hitting 'Search' or enter key
+- [x] add filter combobox
 - [ ] display search results; limit 5 per page, with pagination
 - [ ] display recipe name and image
+- [ ] filter by cuisine
 - [ ] clicking on a recipe redirects to the detail page
 
 ### Detail Page
