@@ -10,7 +10,7 @@ interface RecipeCardProps {
 export function RecipeCard({ image, title, recipeId }: RecipeCardProps) {
   return (
     <Card className="w-full py-0 max-h-36 overflow-hidden">
-      <Link to={`/recipes/${recipeId}/information`}>
+      <Link to={`/recipefinder/recipes/${recipeId}/information`}>
         <div className="flex">
           <div className="max-h-36">
             <img src={image} alt={title} className="object-cover" />

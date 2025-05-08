@@ -62,7 +62,7 @@ export function DetailsPage() {
         <CardContent>
           <ul className="w-full">
             {recipe.extendedIngredients.map((ingredient) => (
-              <li>
+              <li key={ingredient.id}>
                 {`- ${ingredient.measures.us.amount} ${ingredient.measures.us.unitLong} ${ingredient.name}`}
               </li>
             ))}
@@ -76,9 +76,7 @@ export function DetailsPage() {
             <h2 className="text-2xl font-semibold">Instructions</h2>
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <p>{recipe.instructions}</p>
-        </CardContent>
+        <CardContent>{recipe.instructions}</CardContent>
       </Card>
     </div>
   );
