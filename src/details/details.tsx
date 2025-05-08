@@ -1,5 +1,3 @@
-import { CircleSmall } from "lucide-react";
-
 import { useLoaderData } from "react-router";
 import type { RecipeInformation } from "./types";
 import { Badge } from "@/components/ui/badge";
