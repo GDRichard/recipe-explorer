@@ -6,7 +6,7 @@ interface DetailsHeaderProps {
 
 export function DetailsHeader({ title }: DetailsHeaderProps) {
   return (
-    <div className="w-full grid grid-cols-4">
+    <div className="lg:w-full lg:grid lg:grid-cols-4">
       <Link
         className="text-blue-600  hover:text-blue-600/80 font-semibold"
         to="/recipefinder"

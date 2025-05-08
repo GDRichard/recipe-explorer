@@ -26,7 +26,9 @@ export function Search({ setCuisine, onSearch }: SearchProps) {
           type="search"
           name="searchQuery"
         />
-        <Button type="submit">Search</Button>
+        <Button className="hidden sm:inline" type="submit">
+          Search
+        </Button>
       </form>
     </div>
   );
