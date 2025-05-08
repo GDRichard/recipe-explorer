@@ -1,8 +1,3 @@
-export interface Recipe {
-  id: number;
-  title: string;
-  image: string;
-  imageType: string;
-}
+import type { Recipe } from "@/api/types";
 
 export type Page = Recipe[];

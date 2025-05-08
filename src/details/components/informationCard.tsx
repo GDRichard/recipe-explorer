@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { RecipeInformation } from "./types";
 import type { JSX } from "react";
 
 interface InformationCardProps {

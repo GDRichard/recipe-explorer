@@ -1,13 +1,14 @@
 import { API_URL } from "./constants";
+import type { FetchRecipesResponse, RecipeInformation } from "./types";
 
-async function get(url: string) {
+async function get<T>(url: string) {
   try {
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
 
-    return response.json();
+    return response.json() as T;
   } catch (error) {
     console.error(error);
   }
@@ -27,12 +28,12 @@ export async function fetchRecipes({ query, cuisine }: FetchRecipesParams) {
     url += `&cuisine=${cuisine}`;
   }
 
-  return get(url);
+  return get<FetchRecipesResponse>(url);
 }
 
 export async function fetchRecipeInformation(id?: string) {
   const url = `${API_URL}/recipes/${id}/information?apiKey=${
     import.meta.env.VITE_API_KEY
   }`;
-  return get(url);
+  return get<RecipeInformation>(url);
 }

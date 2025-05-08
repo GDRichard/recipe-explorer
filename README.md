@@ -35,5 +35,5 @@ pnpm run dev
 
 - [x] deploy to github pages
 - [x] clean up
+- [x] add typing for fetch requests
 - [ ] test responsiveness
-- [ ] add typing for fetch requests

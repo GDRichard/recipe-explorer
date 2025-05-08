@@ -1,7 +1,8 @@
-import { Link, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 
-import type { RecipeInformation } from "./types";
+import type { RecipeInformation } from "@/api/types";
 import { HealthBenefits, InformationCard } from "./components";
+import { DetailsHeader } from "./components/detailsHeader";
 
 interface Data {
   recipe: RecipeInformation;
@@ -12,17 +13,7 @@ export function DetailsPage() {
 
   return (
     <div className="flex flex-col items-center w-full space-y-8">
-      <div className="w-full grid grid-cols-4">
-        <Link
-          className="text-blue-600  hover:text-blue-600/80 font-semibold"
-          to="/recipefinder"
-        >
-          Return to Search Page
-        </Link>
-        <h1 className="text-3xl font-bold text-center col-span-2">
-          {recipe.title}
-        </h1>
-      </div>
+      <DetailsHeader title={recipe.title} />
       <img
         className="w-4/5 lg:w-1/2 object-cover rounded-lg"
         src={recipe.image}

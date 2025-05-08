@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { fetchRecipes } from "@/api";
 import { PaginationButtons, RecipesList, Search } from "./components";
-import type { Recipe, Page } from "./types";
+import type { Page } from "./types";
+import type { Recipe } from "@/api/types";
 
 export function HomePage() {
   const [pages, setPages] = useState<Page[]>([]);
@@ -18,6 +19,13 @@ export function HomePage() {
       query: searchQuery,
       cuisine: cuisine.length > 0 ? cuisine : undefined,
     });
+
+    if (!response) {
+      console.error(
+        `Error: Could not find recipes matching query ${searchQuery}`
+      );
+      return;
+    }
     splitRecipesByPage(response.results);
   }
 
