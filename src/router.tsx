@@ -1,6 +1,6 @@
 import { createBrowserRouter, redirect } from "react-router";
 import { Layout } from "./layout";
-import { SearchPage } from "./search";
+import { HomePage } from "./home";
 import { DetailsPage } from "./details";
 import { fetchRecipeInformation } from "./api";
 
@@ -8,7 +8,7 @@ export const router = createBrowserRouter([
   {
     Component: Layout,
     children: [
-      { index: true, Component: SearchPage },
+      { index: true, Component: HomePage },
       {
         path: "/recipes/:id/information",
         Component: DetailsPage,

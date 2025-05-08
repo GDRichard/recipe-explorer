@@ -18,7 +18,7 @@ interface Recipe {
 
 type Page = Recipe[];
 
-export function SearchPage() {
+export function HomePage() {
   const [pages, setPages] = useState<Page[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [cuisine, setCuisine] = useState<string>("");
@@ -81,7 +81,7 @@ export function SearchPage() {
         </form>
       </div>
 
-      {pages.length > 0 ? (
+      {pages.length > 1 ? (
         <>
           <div className="flex justify-center gap-2">
             <Button
