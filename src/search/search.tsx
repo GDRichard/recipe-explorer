@@ -1,11 +1,13 @@
 import { ChevronRight, ChevronLeft } from "lucide-react";
+import { v4 as uuidv4 } from "uuid";
 
 import { Button } from "@/components/ui/button";
 import { Combobox } from "@/components/ui/combobox";
 import { Input } from "@/components/ui/input";
-import { API, CUISINES } from "./constants";
+import { CUISINES } from "./constants";
 import { useState } from "react";
 import { RecipeCard } from "./recipeCard";
+import { fetchRecipes } from "@/api";
 
 interface Recipe {
   id: number;
@@ -23,32 +25,16 @@ export function SearchPage() {
 
   async function onSearch(data: FormData) {
     const searchQuery = data.get("searchQuery");
-    if (!searchQuery) {
+    if (!searchQuery || typeof searchQuery !== "string") {
       return;
     }
 
-    let url = `${API.SEARCH_RECIPES}?apiKey=${
-      import.meta.env.VITE_API_KEY
-    }&query=${searchQuery}`;
+    const response = await fetchRecipes({
+      query: searchQuery,
+      cuisine: cuisine.length > 0 ? cuisine : undefined,
+    });
 
-    if (cuisine.length > 0) {
-      url += `&cuisine=${cuisine}`;
-    }
-
-    console.log("url:", url);
-
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
-      }
-
-      const json = await response.json();
-      splitRecipesByPage(json.results);
-    } catch (error) {
-      console.error(error);
-      setPages([]);
-    }
+    splitRecipesByPage(response.results);
   }
 
   function splitRecipesByPage(recipes: Recipe[]) {
@@ -72,7 +58,7 @@ export function SearchPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto py-8">
+    <>
       <h1 className="text-3xl font-bold text-center ">Recipe Finder</h1>
 
       <div className="flex gap-2 max-w-3xl mx-auto py-8">
@@ -111,6 +97,7 @@ export function SearchPage() {
             </Button>
             {pages.map((_, index) => (
               <Button
+                key={uuidv4()}
                 size="icon"
                 variant={index === currentPage ? "default" : "outline"}
                 onClick={() => setCurrentPage(index)}
@@ -132,11 +119,16 @@ export function SearchPage() {
           </div>
           <div className="mx-auto max-w-3xl py-8 space-y-4">
             {pages[currentPage].map((recipe) => (
-              <RecipeCard title={recipe.title} image={recipe.image} />
+              <RecipeCard
+                key={recipe.id}
+                recipeId={recipe.id}
+                title={recipe.title}
+                image={recipe.image}
+              />
             ))}
           </div>
         </>
       ) : null}
-    </div>
+    </>
   );
 }

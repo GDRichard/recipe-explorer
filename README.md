@@ -17,17 +17,22 @@ pnpm run dev
 - [x] limit results to 5 per page
 - [x] add pagination
 - [x] filter by cuisine
-- [ ] clicking on a recipe redirects to the detail page
-- [ ] add typing for api results
+- [x] clicking on a recipe redirects to the detail page
 
 ### Detail Page
 
-- [ ] display the following:
-  - recipe name
-  - recipe image
-  - health information
-  - list of ingredients
-  - cooking instructions
-- [ ] for each ingredient, display the following:
-  - ingredient name
-  - ingredient measure
+- [x] display the following:
+  - [x] recipe name
+  - [x] recipe image
+  - [x] health information
+  - [x] list of ingredients
+  - [x] cooking instructions
+- [x] for each ingredient, display the following:
+  - [x] ingredient name
+  - [x] ingredient measure
+
+### General
+
+- [ ] test responsiveness
+- [ ] add typing for fetch requests
+- [ ] clean up
