@@ -33,6 +33,7 @@ pnpm run dev
 
 ### General
 
+- [ ] deploy to github pages
 - [ ] test responsiveness
 - [ ] add typing for fetch requests
 - [ ] clean up
