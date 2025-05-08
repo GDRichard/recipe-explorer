@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import type { RecipeInformation } from "../types";
+import type { RecipeInformation } from "@/api/types";
 import { HEALTH_BENEFITS_MAP } from "../constants";
 
 interface HealthBenefitsProps {
