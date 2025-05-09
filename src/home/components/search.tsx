@@ -12,7 +12,7 @@ export function Search({ setCuisine, onSearch }: SearchProps) {
   return (
     <div className="flex gap-2 max-w-3xl mx-auto py-8">
       <Combobox
-        placeholder="Filter by cuisine"
+        placeholder="Cuisine"
         emptyLabel="No cuisine found"
         onSelect={(cuisineOption) => setCuisine(cuisineOption)}
         options={CUISINES.map((cuisine) => ({
